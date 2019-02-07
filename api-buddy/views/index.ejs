@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Post me</title>
+</head>
+<h1>Post and receive from an API endpoint</h1>
+<body>
+    <form action="index">
+        <div>
+            <p>
+                <label>Method</label>
+                <select id = "methodList" name="method">
+                <option value = "GET">GET</option>
+                <option value = "POST">POST</option>
+                <option value = "PUT">PUT</option>
+                <option value = "DELETE">DELETE</option>
+                </select>
+                <label for="destinationURL">URL</label>
+                <input type="text" id="destinationURL" name="destinationURL" size="50px">
+                <button type="submit">GO</button>
+            </p>
+        </div>
+        <div>
+            <p><label for="jsonToSend">JSON to send</label></p>
+            <textarea id="jsonToSend" name="jsonToSend" style="height:200px;width:500px"></textarea>
+        </div>                
+    </form>
+
+    <% if (isResponse) {%>        
+        <div>
+            <p><label for="jsonRcvd">JSON received</label></p>
+            <textarea id="jsonRcvd" style="height:200px;width:500px"><%=jsonRcvd%></textarea>
+        </div>        
+    <%}%>  
+      
+</body>
+</html>
