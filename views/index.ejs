@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Post me</title>
 </head>
-<h1>Post and receive from an API endpoint</h1>
+<h1>Interact with an API endpoint</h1>
 <body>
-    <form action="index">
+    <form action="index" method="POST">        
         <div>
             <p>
                 <label>Method</label>
@@ -19,13 +19,14 @@
                 <option value = "DELETE">DELETE</option>
                 </select>
                 <label for="destinationURL">URL</label>
-                <input type="text" id="destinationURL" name="destinationURL" size="50px">
+                <input type="text" id="destinationURL" name="destinationURL" size="50px" >
                 <button type="submit">GO</button>
             </p>
         </div>
         <div>
             <p><label for="jsonToSend">JSON to send</label></p>
             <textarea id="jsonToSend" name="jsonToSend" style="height:200px;width:500px"></textarea>
+
         </div>                
     </form>
 
@@ -33,8 +34,11 @@
         <div>
             <p><label for="jsonRcvd">JSON received</label></p>
             <textarea id="jsonRcvd" style="height:200px;width:500px"><%=jsonRcvd%></textarea>
+            <div>
+                <button value="goBack" onClick="window.location.href='/'">Clear</button>
+            </div>            
         </div>        
     <%}%>  
-      
+    
 </body>
 </html>
