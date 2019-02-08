@@ -9,8 +9,12 @@ const handleGet = (destinationURL) => {
             const results = JSON.stringify(response.data);
             return results;
         })
-        .catch((error) => {               
-            return JSON.stringify(error.response.data);
+        .catch((error) => {     
+            if (!error.response) {
+                return JSON.stringify({status: 500, msg: 'Could not reach server. Check your api URL'});
+            } else {
+                return JSON.stringify(error.response.data);
+            }            
         }); 
 };
 
@@ -21,7 +25,11 @@ const handlePost = (destinationURL, jsonToPost) => {
             return results;
         })
         .catch(error => {
-            return JSON.stringify(error.response.data);
+            if (!error.response) {
+                return JSON.stringify({status: 500, msg: 'Could not reach server. Check your api URL'});
+            } else {
+                return JSON.stringify(error.response.data);
+            }
         });
 };
 
@@ -32,7 +40,11 @@ const handlePut = (destinationURL, jsonToPost) => {
         return results;
     })
     .catch(error => {
-        return JSON.stringify(error.response.data);
+        if (!error.response) {
+            return JSON.stringify({status: 500, msg: 'Could not reach server. Check your api URL'});
+        } else {
+            return JSON.stringify(error.response.data);
+        }
     });
 };
 
@@ -43,7 +55,11 @@ const handleDelete = (destinationURL) => {
         return results;
     })
     .catch((error) => {
-        return JSON.stringify(error.response.data);
+        if (!error.response) {
+            return JSON.stringify({status: 500, msg: 'Could not reach server. Check your api URL'});
+        } else {
+            return JSON.stringify(error.response.data);
+        }
     });
 };
 
