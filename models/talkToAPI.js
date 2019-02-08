@@ -1,7 +1,7 @@
 const axios = require ('axios');
 
 
-//TODO correct error statueses
+//TODO correct error status
 
 const handleGet = (destinationURL) => {
     return axios.get(destinationURL)
@@ -11,12 +11,20 @@ const handleGet = (destinationURL) => {
         })
         .catch((error) => {
             console.log(error);            
-            next({status: 404, message: 'Could not fulfil get request due to error: ' + error});
+            return {status: 404, message: 'Could not fulfil get request due to error: ' + error};
         }); 
 };
 
 const handlePost = (destinationURL, jsonToPost) => {
-
+    return axios.post(destinationURL, jsonToPost)
+        .then((response) => {
+            const results = JSON.stringify(response.data);
+            return results;
+        })
+        .catch(error => {
+            console.log(error);            
+            return {status: 404, message: 'Could not fulfil get request due to error: ' + error};
+        })
 };
 
 const handlePut = (destinationURL, jsonToPost) => {
@@ -32,7 +40,7 @@ const handleDelete = (destinationURL) => {
     })
     .catch((error) => {
         console.log(error);            
-        next({status: 404, message: 'Could not fulfil get request due to error: ' + error});
+        return {status: 404, message: 'Could not fulfil get request due to error: ' + error};
     });
 };
 

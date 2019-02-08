@@ -26,25 +26,31 @@ const handleUserRequest = (req, res, next) => {
                             res.render('index', renderedObj);
                         })
                         .catch(error => {
-                            //TODO do something with error
+                            next(error);
                         });
 
                 } else {
                     handleDelete(destinationURL)
                         .then(results => {
-                            //console.log(results);
                             renderedObj.jsonRcvd=results;                            
                             res.render('index', renderedObj);
                         })
                         .catch(error => {
-                            //TODO do something with error
+                            next(error);
                         });
                 }            
         } else if (method === 'POST' || method === 'PUT') {
             if (requestKeys.includes('jsonToSend')) {
-                const jsonToSend= userRequest.jsonToSend;
+                const jsonToSend= JSON.parse(userRequest.jsonToSend);                
                 if (method==='POST') {
-                    handlePost(destinationURL, jsonToSend);
+                    handlePost(destinationURL, jsonToSend)
+                        .then (results => {
+                            renderedObj.jsonRcvd=results;                            
+                            res.render('index', renderedObj);
+                        })
+                        .catch(error => {
+                            next(error);
+                        });
                 } else {
                     handlePut(destinationURL, jsonToSend);
                 }
