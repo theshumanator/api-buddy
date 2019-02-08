@@ -1,9 +1,8 @@
 const {handleGet, handleDelete, handlePost, handlePut} = require('../models/talkToAPI');
-/* 
-    TODO handle the API put   
+/*     
     TODO install express validator for sanitsation to do validation
-    TODO error handling in controller/model and back to page
-    TODO if ddoing get or delete, remove the json to Send input or disable
+    TODO error handling in controller
+    TODO if doing get or delete, remove the json to Send input or disable
     TODO fix the appearance of json
 */
 

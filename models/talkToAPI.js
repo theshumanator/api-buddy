@@ -9,9 +9,8 @@ const handleGet = (destinationURL) => {
             const results = JSON.stringify(response.data);
             return results;
         })
-        .catch((error) => {
-            console.log(error);            
-            return {status: 404, message: 'Could not fulfil get request due to error: ' + error};
+        .catch((error) => {               
+            return JSON.stringify(error.response.data);
         }); 
 };
 
@@ -22,8 +21,7 @@ const handlePost = (destinationURL, jsonToPost) => {
             return results;
         })
         .catch(error => {
-            console.log(error);            
-            return {status: 404, message: 'Could not fulfil get request due to error: ' + error};
+            return JSON.stringify(error.response.data);
         });
 };
 
@@ -34,8 +32,7 @@ const handlePut = (destinationURL, jsonToPost) => {
         return results;
     })
     .catch(error => {
-        console.log(error);            
-        return {status: 404, message: 'Could not fulfil get request due to error: ' + error};
+        return JSON.stringify(error.response.data);
     });
 };
 
@@ -46,8 +43,7 @@ const handleDelete = (destinationURL) => {
         return results;
     })
     .catch((error) => {
-        console.log(error);            
-        return {status: 404, message: 'Could not fulfil get request due to error: ' + error};
+        return JSON.stringify(error.response.data);
     });
 };
 
