@@ -24,10 +24,21 @@ const handleUserRequest = (req, res, next) => {
                         .then(results => {
                             renderedObj.jsonRcvd=results;                            
                             res.render('index', renderedObj);
+                        })
+                        .catch(error => {
+                            //TODO do something with error
                         });
 
                 } else {
-                    handleDelete(destinationURL);
+                    handleDelete(destinationURL)
+                        .then(results => {
+                            //console.log(results);
+                            renderedObj.jsonRcvd=results;                            
+                            res.render('index', renderedObj);
+                        })
+                        .catch(error => {
+                            //TODO do something with error
+                        });
                 }            
         } else if (method === 'POST' || method === 'PUT') {
             if (requestKeys.includes('jsonToSend')) {

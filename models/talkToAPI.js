@@ -5,7 +5,7 @@ const axios = require ('axios');
 
 const handleGet = (destinationURL) => {
     return axios.get(destinationURL)
-        .then((response) => {
+        .then((response) => {                        
             const results = JSON.stringify(response.data);
             return results;
         })
@@ -24,7 +24,16 @@ const handlePut = (destinationURL, jsonToPost) => {
 };
 
 const handleDelete = (destinationURL) => {
-
+    
+    return axios.delete(destinationURL)
+    .then((response) => {
+        const results = JSON.stringify(response.data);
+        return results;
+    })
+    .catch((error) => {
+        console.log(error);            
+        next({status: 404, message: 'Could not fulfil get request due to error: ' + error});
+    });
 };
 
 module.exports={handleGet, handleDelete, handlePost, handlePut};
