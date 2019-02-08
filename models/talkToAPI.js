@@ -24,15 +24,22 @@ const handlePost = (destinationURL, jsonToPost) => {
         .catch(error => {
             console.log(error);            
             return {status: 404, message: 'Could not fulfil get request due to error: ' + error};
-        })
+        });
 };
 
 const handlePut = (destinationURL, jsonToPost) => {
-
+    return axios.put(destinationURL, jsonToPost)
+    .then((response) => {        
+        const results = JSON.stringify(response.data);
+        return results;
+    })
+    .catch(error => {
+        console.log(error);            
+        return {status: 404, message: 'Could not fulfil get request due to error: ' + error};
+    });
 };
 
-const handleDelete = (destinationURL) => {
-    
+const handleDelete = (destinationURL) => {    
     return axios.delete(destinationURL)
     .then((response) => {
         const results = JSON.stringify(response.data);

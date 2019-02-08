@@ -1,6 +1,6 @@
 const {handleGet, handleDelete, handlePost, handlePut} = require('../models/talkToAPI');
 /* 
-    TODO handle the API post, put and delete   
+    TODO handle the API put   
     TODO install express validator for sanitsation to do validation
     TODO error handling in controller/model and back to page
     TODO if ddoing get or delete, remove the json to Send input or disable
@@ -52,7 +52,14 @@ const handleUserRequest = (req, res, next) => {
                             next(error);
                         });
                 } else {
-                    handlePut(destinationURL, jsonToSend);
+                    handlePut(destinationURL, jsonToSend)
+                        .then (results => {
+                            renderedObj.jsonRcvd=results;                            
+                            res.render('index', renderedObj);
+                        })
+                        .catch(error => {
+                            next(error)
+                        });
                 }
             } else {
                 //TODO report error for missing json
