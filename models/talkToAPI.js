@@ -1,19 +1,19 @@
 const axios = require ('axios');
-
+const {commonError} = require('./utils/common-response');
 
 //TODO correct error status
 
 const handleGet = (destinationURL) => {
     return axios.get(destinationURL)
         .then((response) => {                        
-            const results = JSON.stringify(response.data);
+            const results = response.data;
             return results;
         })
         .catch((error) => {     
             if (!error.response) {
-                return JSON.stringify({status: 500, msg: 'Could not reach server. Check your api URL'});
+                return commonError;               
             } else {
-                return JSON.stringify(error.response.data);
+                return error.response.data;
             }            
         }); 
 };
@@ -21,29 +21,29 @@ const handleGet = (destinationURL) => {
 const handlePost = (destinationURL, jsonToPost) => {
     return axios.post(destinationURL, jsonToPost)
         .then((response) => {
-            const results = JSON.stringify(response.data);
+            const results = response.data;
             return results;
         })
         .catch(error => {
             if (!error.response) {
-                return JSON.stringify({status: 500, msg: 'Could not reach server. Check your api URL'});
+                return commonError;
             } else {
-                return JSON.stringify(error.response.data);
+                return error.response.data;
             }
         });
 };
 
-const handlePut = (destinationURL, jsonToPost) => {
+const handlePut = (destinationURL, jsonToPost) => {    
     return axios.put(destinationURL, jsonToPost)
     .then((response) => {        
-        const results = JSON.stringify(response.data);
+        const results = response.data;
         return results;
     })
-    .catch(error => {
+    .catch(error => {     
         if (!error.response) {
-            return JSON.stringify({status: 500, msg: 'Could not reach server. Check your api URL'});
+            return commonError;
         } else {
-            return JSON.stringify(error.response.data);
+            return error.response.data;
         }
     });
 };
@@ -51,14 +51,14 @@ const handlePut = (destinationURL, jsonToPost) => {
 const handleDelete = (destinationURL) => {    
     return axios.delete(destinationURL)
     .then((response) => {
-        const results = JSON.stringify(response.data);
+        const results = response.data;
         return results;
     })
     .catch((error) => {
         if (!error.response) {
-            return JSON.stringify({status: 500, msg: 'Could not reach server. Check your api URL'});
+            return commonError;
         } else {
-            return JSON.stringify(error.response.data);
+            return error.response.data;
         }
     });
 };

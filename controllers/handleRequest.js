@@ -1,15 +1,15 @@
 const {handleGet, handleDelete, handlePost, handlePut} = require('../models/talkToAPI');
-/*     
+const {badJsonSent} = require('../models/utils/common-response');
+/*      
+    TODO add headers (input and to axios)
     TODO install express validator for sanitsation to do validation
     TODO error handling in controller
     TODO if doing get or delete, remove the json to Send input or disable
-    TODO fix the appearance of json    
 */
 
 const handleUserRequest = (req, res, next) => {    
-    //console.log(req.body);    //{ method: 'GET', destinationURL: '3443', jsonToSend: '' }
     const userRequest = req.body;
-    const requestKeys = Object.keys(userRequest);    
+    const requestKeys = Object.keys(userRequest);        
     const renderedObj = {
         jsonRcvd: '',
         isResponse: true
@@ -40,7 +40,12 @@ const handleUserRequest = (req, res, next) => {
                 }            
         } else if (method === 'POST' || method === 'PUT') {
             if (requestKeys.includes('jsonToSend')) {
-                const jsonToSend= JSON.parse(userRequest.jsonToSend);                
+                let jsonToSend='';
+                try {
+                    jsonToSend= JSON.parse(userRequest.jsonToSend);                
+                } catch (error) {                    
+                    next(badJsonSent);
+                }   
                 if (method==='POST') {
                     handlePost(destinationURL, jsonToSend)
                         .then (results => {
@@ -50,13 +55,13 @@ const handleUserRequest = (req, res, next) => {
                         .catch(error => {
                             next(error);
                         });
-                } else {
+                } else {                    
                     handlePut(destinationURL, jsonToSend)
                         .then (results => {
-                            renderedObj.jsonRcvd=results;                            
+                            renderedObj.jsonRcvd=results;
                             res.render('index', renderedObj);
                         })
-                        .catch(error => {
+                        .catch(error => {             
                             next(error)
                         });
                 }

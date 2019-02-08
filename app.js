@@ -12,14 +12,16 @@ app.set('view engine', 'ejs');
 app.all('/', router);
 app.post('/index', router);
 
-app.all('/*', (req, res, next) => {    
-    //TODO is this correct error??
+app.all('/*', (req, res, next) => {       
     next({status: 400, message: 'Server understood request but refused to fulfil it'});
 })
 
 app.use((err, req, res, next) => {
-    res.status(err.status).send(err); 
-    //TODO render error??
+    const renderedObj = {
+        jsonRcvd: err,
+        isResponse: true
+    }   
+    res.render('index', renderedObj);      
 });
 
 module.exports = app;
