@@ -48,6 +48,21 @@ const handlePut = (destinationURL, jsonToPost) => {
     });
 };
 
+const handlePatch = (destinationURL, jsonToPost) => {    
+    return axios.patch(destinationURL, jsonToPost)
+    .then((response) => {                        
+        const results = response.data;
+        return results;
+    })
+    .catch(error => {     
+        if (!error.response) {
+            return commonError;
+        } else {
+            return error.response.data;
+        }
+    });
+};
+
 const handleDelete = (destinationURL) => {    
     return axios.delete(destinationURL)
     .then((response) => {
@@ -63,4 +78,4 @@ const handleDelete = (destinationURL) => {
     });
 };
 
-module.exports={handleGet, handleDelete, handlePost, handlePut};
+module.exports={handleGet, handleDelete, handlePost, handlePut, handlePatch};

@@ -1,4 +1,4 @@
-const {handleGet, handleDelete, handlePost, handlePut} = require('../models/talkToAPI');
+const {handleGet, handleDelete, handlePost, handlePut, handlePatch} = require('../models/talkToAPI');
 const {badJsonSent} = require('../models/utils/common-response');
 /*      
     TODO add headers (input and to axios)
@@ -38,7 +38,7 @@ const handleUserRequest = (req, res, next) => {
                             next(error);
                         });
                 }            
-        } else if (method === 'POST' || method === 'PUT') {
+        } else if (method === 'POST' || method === 'PUT' || method === 'PATCH') {
             if (requestKeys.includes('jsonToSend')) {
                 let jsonToSend='';
                 try {
@@ -48,6 +48,15 @@ const handleUserRequest = (req, res, next) => {
                 }   
                 if (method==='POST') {
                     handlePost(destinationURL, jsonToSend)
+                        .then (results => {
+                            renderedObj.jsonRcvd=results;                            
+                            res.render('index', renderedObj);
+                        })
+                        .catch(error => {
+                            next(error);
+                        });
+                } else if (method==='PATCH') {
+                    handlePatch(destinationURL, jsonToSend)
                         .then (results => {
                             renderedObj.jsonRcvd=results;                            
                             res.render('index', renderedObj);
