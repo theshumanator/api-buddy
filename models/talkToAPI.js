@@ -18,6 +18,21 @@ const handleGet = (destinationURL) => {
         }); 
 };
 
+const handleDelete = (destinationURL) => {    
+    return axios.delete(destinationURL)
+    .then((response) => {
+        const results = response.data;
+        return results;
+    })
+    .catch((error) => {
+        if (!error.response) {
+            return commonError;
+        } else {
+            return error.response.data;
+        }
+    });
+};
+
 const handlePost = (destinationURL, jsonToPost) => {
     return axios.post(destinationURL, jsonToPost)
         .then((response) => {
@@ -62,20 +77,4 @@ const handlePatch = (destinationURL, jsonToPost) => {
         }
     });
 };
-
-const handleDelete = (destinationURL) => {    
-    return axios.delete(destinationURL)
-    .then((response) => {
-        const results = response.data;
-        return results;
-    })
-    .catch((error) => {
-        if (!error.response) {
-            return commonError;
-        } else {
-            return error.response.data;
-        }
-    });
-};
-
 module.exports={handleGet, handleDelete, handlePost, handlePut, handlePatch};

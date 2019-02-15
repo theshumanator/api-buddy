@@ -1,10 +1,6 @@
 const {handleGet, handleDelete, handlePost, handlePut, handlePatch} = require('../models/talkToAPI');
 const {badJsonSent} = require('../models/utils/common-response');
-/*      
-    TODO install express validator for sanitsation to do validation
-    TODO error handling in controller
-    TODO if doing get or delete, remove the json to Send input or disable
-*/
+
 
 const handleUserRequest = (req, res, next) => {    
     const userRequest = req.body;
@@ -37,7 +33,7 @@ const handleUserRequest = (req, res, next) => {
                             next(error);
                         });
                 }            
-        } else if (method === 'POST' || method === 'PUT' || method === 'PATCH') {
+        } else if (method === 'POST' || method === 'PUT' || method === 'PATCH') {            
             if (requestKeys.includes('jsonToSend')) {
                 let jsonToSend='';
                 try {
@@ -74,16 +70,10 @@ const handleUserRequest = (req, res, next) => {
                         });
                 }
             } else {
-                //TODO report error for missing json
+                next({status: 400, msg: 'JSON is missing. PUT, PATCH and POST need a json to be sent'});
             }
-        } else {
-            //TODO report an error for invalid method    
-        }
-        
-    } else {
-        //TODO report an error for missing url or method
-    }
-
+        }        
+    } 
 }
 
 const showMainPage = (req, res, next) => {    
