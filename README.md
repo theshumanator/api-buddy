@@ -1,24 +1,21 @@
 # api-buddy
 
-URLS to test with:
+## Purpose
+This is a lightweight service that lets you interact with Web APIs.
 
-GET pets for owner: http://localhost:3030/api/pets?id=o1
+### Methods supported
 
-DELETE pet of owner: http://localhost:3030/api/pets?id=p1549625228932
+#### GET
+Paste the url and select GET. The response from the api service will be displayed in the second box.
 
-POST pet of owner: http://localhost:3030/api/owners/o1/pets
-{
-    "name": "Alan Turin",
-    "avatarUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjOqKI0kZG7nIV2w7AFRWfPUGiqeM0J26TbCp8irR1jZiNG556",
-    "favouriteFood": "Digestive Biscuits",
-    "owner": "o1"
-}
+#### DELETE
+Paste the url and select DELETE. If there is a response from the api service, it will be displayed in the second box.
 
-PUT update owner age: http://localhost:3030/api/owner/o1
-{
-    "id": "o1",
-    "name": "Steve",
-    "age": 1228
-}
-Check it's updated:
-GET http://localhost:3030/api/owners
+#### POST
+Paste the url, properly formed json and select POST. If there is a response from the api service, it will be displayed in the second box.
+
+#### PATCH & PUT
+Paste the url, properly formed json and select PUT (or PATCH). If there is a response from the api service, it will be displayed in the second box.
+
+## Author
+Fatmeh A Shuman - [theshumanator](https://github.com/theshumanator/)

@@ -1,7 +1,6 @@
 const {handleGet, handleDelete, handlePost, handlePut, handlePatch} = require('../models/talkToAPI');
 const {badJsonSent} = require('../models/utils/common-response');
 /*      
-    TODO add headers (input and to axios)
     TODO install express validator for sanitsation to do validation
     TODO error handling in controller
     TODO if doing get or delete, remove the json to Send input or disable
