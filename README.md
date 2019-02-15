@@ -17,5 +17,11 @@ Paste the url, properly formed json and select POST. If there is a response from
 #### PATCH & PUT
 Paste the url, properly formed json and select PUT (or PATCH). If there is a response from the api service, it will be displayed in the second box.
 
+## Hosting
+This service is hosted in [Heroku](https://shumanator-api-buddy.herokuapp.com).
+
+## Acknowledgements
+Free hosting [Heroku](https://heroku.com)
+
 ## Author
 Fatmeh A Shuman - [theshumanator](https://github.com/theshumanator/)
