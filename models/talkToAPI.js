@@ -25,6 +25,7 @@ const handlePost = (destinationURL, jsonToPost) => {
             return results;
         })
         .catch(error => {
+            console.log(error);
             if (!error.response) {
                 return commonError;
             } else {
