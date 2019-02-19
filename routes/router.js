@@ -1,8 +1,10 @@
 const router = require('express').Router();
-const {showMainPage, handleUserRequest} = require('../controllers/handleRequest');
+const {showMainPage, validate, handleUserRequest} = require('../controllers/handleRequest');
 
 router.all('/', showMainPage);
-router.post('/index', handleUserRequest);
+router.post('/index', 
+    validate('handleUserRequest'),
+    handleUserRequest);
 
 
 

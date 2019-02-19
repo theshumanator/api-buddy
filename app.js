@@ -2,12 +2,15 @@ const express = require ('express');
 const app = express();
 const bodyParser = require('body-parser');
 const router = require('./routes/router');
+const expressValidator = require('express-validator')
+
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.use(express.static('public'));
 app.set('view engine', 'ejs');
+app.use(expressValidator())
 
 app.all('/', router);
 app.post('/index', router);

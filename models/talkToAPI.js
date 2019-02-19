@@ -1,8 +1,6 @@
 const axios = require ('axios');
 const {commonError} = require('./utils/common-response');
 
-//TODO correct error status
-
 const handleGet = (destinationURL) => {
     return axios.get(destinationURL)
         .then((response) => {                        

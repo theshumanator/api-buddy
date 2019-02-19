@@ -35,8 +35,9 @@
         <div>
             <p><label for="jsonRcvd">JSON received</label></p>
             <div>
-                <div  style="white-space: pre-wrap;">
-                    <pre><%try {%><%=JSON.stringify(jsonRcvd, null, 2);%><%} catch(error){%><%='Returned results could  not be stringified: ' + error%><%}%></pre>   
+                <div  style="white-space: pre-wrap;"><textarea id="jsonRcvd" style="height:200px;width:500px"><%try {%><%=JSON.stringify(jsonRcvd, null, 2);%><%} catch(error){%><%='Returned results could  not be stringified: ' + error%><%}%></textarea>
+
+                    
                 </div>
             </div>
             
