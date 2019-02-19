@@ -1,10 +1,7 @@
 const {handleGet, handleDelete, handlePost, handlePut, handlePatch} = require('../models/talkToAPI');
 const {badJsonSent} = require('../models/utils/common-response');
-//const { check, validationResult } = require('express-validator/check');
 const { body } = require('express-validator/check')
 
-
-//https://medium.freecodecamp.org/how-to-make-input-validation-simple-and-clean-in-your-express-js-app-ea9b5ff5a8a7
 const validate = (funct) => {
     switch (funct) {
         case 'handleUserRequest': {
@@ -16,10 +13,7 @@ const validate = (funct) => {
     }
 
 const validationHandler = next => result => {
-    //console.log(result);
-
     if (result.isEmpty()) return
-    
     
     if (!next) {
         const err = result.array().map(i => `'${i.param}' has ${i.msg}`).join(' ');
@@ -33,20 +27,10 @@ const validationHandler = next => result => {
 
 const handleUserRequest = (req, res, next) => {       
     req
-    .getValidationResult() // to get the result of above validate fn
-    /* 
-    returns obj like this
-    {
-        param: "field name",
-        msg: "error message", 
-        value: "<field input value>"
-    }
-     */
+    .getValidationResult() 
     .then(validationHandler())
     .then(() => {
         const {method, destinationURL, jsonToSend} = req.body;
-        //const userRequest = req.body;
-        //const requestKeys = Object.keys(userRequest);        
         const renderedObj = {
             jsonRcvd: '',
             isResponse: true
