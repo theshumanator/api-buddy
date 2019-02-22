@@ -1,78 +1,78 @@
-const axios = require ('axios');
-const {commonError} = require('./utils/common-response');
+const axios = require ( 'axios' );
+const { commonError } = require( './utils/common-response' );
 
-const handleGet = (destinationURL) => {
-    return axios.get(destinationURL)
-        .then((response) => {                        
+const handleGet = ( destinationURL ) => {
+    return axios.get( destinationURL )
+        .then( ( response ) => {                        
             const results = response.data;
             return results;
-        })
-        .catch((error) => {     
-            if (!error.response) {
+        } )
+        .catch( ( error ) => {     
+            if ( !error.response ) {
                 return commonError;               
             } else {
                 return error.response.data;
             }            
-        }); 
+        } ); 
 };
 
-const handleDelete = (destinationURL) => {    
-    return axios.delete(destinationURL)
-    .then((response) => {
-        const results = response.data;
-        return results;
-    })
-    .catch((error) => {
-        if (!error.response) {
-            return commonError;
-        } else {
-            return error.response.data;
-        }
-    });
-};
-
-const handlePost = (destinationURL, jsonToPost) => {
-    return axios.post(destinationURL, jsonToPost)
-        .then((response) => {
+const handleDelete = ( destinationURL ) => {    
+    return axios.delete( destinationURL )
+        .then( ( response ) => {
             const results = response.data;
             return results;
-        })
-        .catch(error => {
-            if (!error.response) {
+        } )
+        .catch( ( error ) => {
+            if ( !error.response ) {
                 return commonError;
             } else {
                 return error.response.data;
             }
-        });
+        } );
 };
 
-const handlePut = (destinationURL, jsonToPost) => {    
-    return axios.put(destinationURL, jsonToPost)
-    .then((response) => {        
-        const results = response.data;
-        return results;
-    })
-    .catch(error => {     
-        if (!error.response) {
-            return commonError;
-        } else {
-            return error.response.data;
-        }
-    });
+const handlePost = ( destinationURL, jsonToPost ) => {
+    return axios.post( destinationURL, jsonToPost )
+        .then( ( response ) => {
+            const results = response.data;
+            return results;
+        } )
+        .catch( error => {
+            if ( !error.response ) {
+                return commonError;
+            } else {
+                return error.response.data;
+            }
+        } );
 };
 
-const handlePatch = (destinationURL, jsonToPost) => {    
-    return axios.patch(destinationURL, jsonToPost)
-    .then((response) => {                        
-        const results = response.data;
-        return results;
-    })
-    .catch(error => {     
-        if (!error.response) {
-            return commonError;
-        } else {
-            return error.response.data;
-        }
-    });
+const handlePut = ( destinationURL, jsonToPost ) => {    
+    return axios.put( destinationURL, jsonToPost )
+        .then( ( response ) => {        
+            const results = response.data;
+            return results;
+        } )
+        .catch( error => {     
+            if ( !error.response ) {
+                return commonError;
+            } else {
+                return error.response.data;
+            }
+        } );
 };
-module.exports={handleGet, handleDelete, handlePost, handlePut, handlePatch};
+
+const handlePatch = ( destinationURL, jsonToPost ) => {    
+    return axios.patch( destinationURL, jsonToPost )
+        .then( ( response ) => {                        
+            const results = response.data;
+            return results;
+        } )
+        .catch( error => {     
+            if ( !error.response ) {
+                return commonError;
+            } else {
+                return error.response.data;
+            }
+        } );
+};
+module.exports = { handleGet, handleDelete, handlePost, handlePut, handlePatch };

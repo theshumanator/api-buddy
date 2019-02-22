@@ -1,11 +1,9 @@
-const router = require('express').Router();
-const {showMainPage, validate, handleUserRequest} = require('../controllers/handleRequest');
+const router = require( 'express' ).Router();
+const { showMainPage, validate, handleUserRequest } = require( '../controllers/handleRequest' );
 
-router.all('/', showMainPage);
-router.post('/index', 
-    validate('handleUserRequest'),
-    handleUserRequest);
+router.all( '/', showMainPage );
+router.post( '/index', 
+    validate( 'handleUserRequest' ),
+    handleUserRequest );
 
-
-
-module.exports=router;
+module.exports = router;
